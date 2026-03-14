@@ -1,14 +1,17 @@
-from llama_engine.agent import VideoAgent
+from models.inpainting.video_inpainter import VideoInpainter
+from models.segmentation.cage_segmenter import CageSegmenter
 
 
 class FrameProcessor:
 
     def __init__(self):
-        self.agent = VideoAgent()
+        self.segmenter = CageSegmenter()
+        self.inpainter = VideoInpainter()
 
     def process(self, frame):
         """
-        Process a single frame using the AI agent
+        Process a single frame by segmenting cage wires and inpainting them.
         """
-        processed_frame = self.agent.process_frame(frame)
+        cage_mask = self.segmenter.segment(frame)
+        processed_frame = self.inpainter.inpaint(frame, cage_mask)
         return processed_frame
