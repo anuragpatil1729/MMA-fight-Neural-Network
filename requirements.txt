@@ -1,0 +1,12 @@
+opencv-python
+torch
+torchvision
+numpy
+fastapi
+uvicorn
+pydantic
+python-multipart
+transformers
+llama-cpp-python
+tqdm
+scikit-image
